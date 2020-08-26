@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_faq.css">
+    <link rel="stylesheet" href="../core/navigation_bar/style_navigation_bar.css">
     <title>FAQs</title>
 </head>
+
 <body>
     <nav>
         <div class="navigation-bar">
             <label class="logo"><a href="../home/home.html">MealVity</a></label>
             <ul class="navigation-links">
-                <li><a href="../home/home.html"><div>Home</div></a></li>
-                <li><a href="../account/account.html"><div>Sign Up / Log In</div></a></li>
-                <li class="active-page"><a href="../faq/faq.html"><div>FAQs</div></a></li>
+                <li><a href="../home/home.html">
+                        <div>Home</div>
+                    </a></li>
+                <li><a href="../account/account.html">
+                        <div>Sign Up / Log In</div>
+                    </a></li>
+                <li class="active-page"><a href="../faq/faq.html">
+                        <div>FAQs</div>
+                    </a></li>
             </ul>
             <div class="burger">
                 <div></div>
@@ -25,6 +34,55 @@
         </div>
     </nav>
 
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                What is MealVity?
+            </div>
+            <div class="accordion-item-content">
+                <div class="long-overline"></div>
+                <p>
+                    MealVity is an online food order and delivery service that acts as an intermediary between independent food outlets and our customers. We try to partner with the best restaurants in the industry, from small shops to international restaurants.
+                </p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How does MealVity work?
+            </div>
+            <div class="accordion-item-content">
+                <div class="long-overline"></div>
+                <p>
+                    The only thing you have to do is add your home address to find the best restaurants near you. From there, you can either reserve a table or order your food. Once you've made your reservations/order, it will notify the restaurant and act accordingly.
+                </p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How does a table reservation work?
+            </div>
+            <div class="accordion-item-content">
+                <div class="long-overline"></div>
+                <p>
+                    Once you select a restaurant near you, you can reserve a table providing the date of reservation, time of reservation and the number of guests. Once booked, it will notify the restaurant, and you will receive a status update in the app. In case your reservation gets rejected, the restaurant will provide you with a valid reason for rejection.
+                </p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-item-header">
+                How do you place an order?
+            </div>
+            <div class="accordion-item-content">
+                <div class="long-overline"></div>
+                <p>
+                    Once you select a restaurant near you, you can select from a vast number of items available from the restaurants' menu. Once you've done selecting your items, you need to fill out your details, select a delivery method (Pick-up/Home delivery) and select a payment method (Cash/Credit Card/Paypal).
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script src="script_faq.js"></script>
+    <script src="../core/navigation_bar/script_navigation_bar.js"></script>
 </body>
+
 </html>

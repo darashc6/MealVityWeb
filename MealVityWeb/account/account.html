@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_account.css">
+    <link rel="stylesheet" href="../core/navigation_bar/style_navigation_bar.css">
     <title>Account</title>
 </head>
 
@@ -39,7 +41,46 @@
         </div>
     </nav>
 
+    <div class="account-selection">
+        <ul class="account-links">
+            <li class="button-email">Sign in</li>
+            <li class="button-new-account">Create a new account</li>
+        </ul>
+    </div>
+
+    <div class="account-container">
+        <div class="sign-in-container">
+            <div class="button-google">
+                <img src="images/google_icon.png" alt="Google Icon">
+                <p>Sign in with Google</p>
+            </div>
+            <div class="or-line-break">
+                <div class="line-break"></div>
+                <span id="or-text">or</span>
+                <div class="line-break"></div>
+            </div>
+            <div class="sign-in-form">
+                <input type="email" placeholder="Enter your email address">
+                <input type="password" placeholder="Enter your password">
+                <div class="sign-in-button">Sign in</div>
+            </div>
+            <div class="reset-password-container">
+                <p id="reset-password-text">Forgot your password?</p>
+                <a href="#" id="reset-password-link">Reset</a>
+            </div>
+        </div>
+        <div class="new-account-form">
+            <input type="text" placeholder="Enter your full name">
+            <input type="tel" placeholder="Enter your phone number">
+            <input type="email" placeholder="Enter your email address">
+            <input type="password" placeholder="Enter your password">
+            <input type="password" placeholder="Repeat your password">
+            <div class="sign-up-button">Sign up</div>
+        </div>
+    </div>
+
     <script src="script_account.js"></script>
+    <script src="../core/navigation_bar/script_navigation_bar.js"></script>
 </body>
 
 </html>
