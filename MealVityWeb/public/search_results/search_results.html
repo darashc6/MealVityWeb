@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../core/navigation_bar/style_navigation_bar.css">
+    <link rel="stylesheet" href="style_search_results.css">
+    <title>Search results</title>
+</head>
+
+<body>
+    <nav>
+        <div class="navigation-bar">
+            <label class="logo"><a href="../index.html">MealVity</a></label>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="search-filter-container">
+            <div class="sort-by-container container">
+                <div class="title">
+                    Sort by
+                    <div class="long-underline"></div>
+                </div>
+                <div class="sort-by-options">
+                    <label class="radio">
+                        <input type="radio" class="radio-input" name="sortby" value="best-match" checked="checked">
+                        <div class="radio-custom"></div>
+                        <label>Best match</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" class="radio-input" value="ratings" name="sortby">
+                        <div class="radio-custom"></div>
+                        <label>Ratings</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" class="radio-input" value="distance" name="sortby">
+                        <div class="radio-custom"></div>
+                        <label>Distance</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" class="radio-input" value="cheapest" name="sortby">
+                        <div class="radio-custom"></div>
+                        <label>Price: € to €€€€</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" class="radio-input" value="expensive" name="sortby">
+                        <div class="radio-custom"></div>
+                        <label>Price: €€€€ to €</label>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-price-container container">
+                <div class="title">
+                    Price
+                    <div class="long-underline"></div>
+                </div>
+                <div class="filter-by-price-options">
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox-input checkbox-price" value="1">
+                        <div class="checkbox-custom"></div>
+                        <label>€</label>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox-input checkbox-price" value="2">
+                        <div class="checkbox-custom"></div>
+                        <label>€€</label>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox-input checkbox-price" value="3">
+                        <div class="checkbox-custom"></div>
+                        <label>€€€</label>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox-input checkbox-price" value="4">
+                        <div class="checkbox-custom"></div>
+                        <label>€€€€</label>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-distance-container container">
+                <div class="title">
+                    Distance
+                    <div class="long-underline"></div>
+                </div>
+                <div class="filter-distance-option">
+                    <label>Max distance in km (Limit: 40): </label>
+                    <input type="number" min="1" max="40" value="1" maxlength="2" class="input-distance">
+                </div>
+            </div>
+            <div class="search-open-restaurant-container container">
+                <div class="title">
+                    Open restaurants
+                    <div class="long-underline"></div>
+                </div>
+                <div class="search-open-restaurant-options">
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox-input checkbox-open">
+                        <div class="checkbox-custom"></div>
+                        <label>Search for open restaurants</label>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="search-results-container"> 
+        </div>
+    </div>
+
+    <script src="script_search_results.js" type="module"></script>
+</body>
+
+<!-- 
+
+    <div class="example-result-container">
+                <img src="images/example2.jpg" alt="Image">
+                <div class="restaurant-content">
+                    <div class="restaurant-name">
+                        Restaurant name
+                    </div>
+                    <div class="restaurant-details">
+                        <div class="restaurant-info"> 
+                            <div>
+                                <img src="images/spoon.png" alt="Cusine">
+                                <label>Cuisine</label>
+                            </div>
+                            <div>
+                                <label>Number</label>
+                                <img src="images/phone.png" alt="Phone_number">
+                            </div>
+                        </div>
+                        <div class="restaurant-info"> 
+                            <div>
+                                <img src="images/pin.png" alt="Cusine">
+                                <label>Address</label>
+                            </div>
+                            <div>
+                                <label>Distance</label>
+                                <img src="images/distance.png" alt="Distance">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+-->
+</html>
