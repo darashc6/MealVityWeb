@@ -14,9 +14,8 @@ body {
 
 html,
 body {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .search-main-container {
@@ -84,18 +83,34 @@ body {
 
 .input-form {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 20px;
 }
 
-.input-form input {
-    width: 55%;
+.result {
+    position: relative;
+    background-color: white;
+    width: 20vw;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 12px;
+    cursor: default;
+}
+
+.result:hover {
+    background-color: rgb(233, 230, 230);
+}
+
+.example input {
+    width: 20vw;
+    height: 25px;
     padding: 3px;
-    margin-right: 10px;
 }
 
 .input-form button {
     width: 1fr;
+    height: 25px;
     background-color: #C69D14;
     padding: 3px;
     border: 1px solid black;

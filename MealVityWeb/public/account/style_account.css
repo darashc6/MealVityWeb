@@ -10,8 +10,6 @@
 
 html,
 body {
-    height: 100%;
-    width: 100%;
     margin: 0;
     padding: 0;
     background-color: var(--color-primary);
@@ -22,15 +20,14 @@ body {
     list-style: none;
 }
 
-.account-selection ul {
+.account-selection {
     display: flex;
     align-items: center;
-    padding: 0;
 }
 
-.account-selection ul li {
+.account-selection div {
     flex: 40%;
-    margin: 0 20px;
+    margin: 15px 20px;
     padding: 3px 0;
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
@@ -38,7 +35,7 @@ body {
     color: var(--color-accent);
 }
 
-.account-selection ul li:hover {
+.account-selection div:hover {
     cursor: pointer;
     background-color: var(--color-accent-dark);
     color: var(--color-primary);
@@ -60,7 +57,7 @@ body {
 }
 
 .sign-in-container {
-    position: fixed;
+    position: absolute;
     left: 5%;
     padding: 80px;
 
@@ -159,7 +156,7 @@ body {
 }
 
 .new-account-form {
-    position: fixed;
+    position: absolute;
     left: 105%;
     padding: 80px;
 
