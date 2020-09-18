@@ -102,7 +102,7 @@ body {
     background-color: rgb(233, 230, 230);
 }
 
-.example input {
+.input-address {
     width: 20vw;
     height: 25px;
     padding: 3px;
@@ -238,6 +238,10 @@ body {
 
     .address-form {
         width: 85%;
+    }
+
+    .input-address, .result {
+        width: 50vw;
     }
 
     .website-slogan {

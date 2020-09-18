@@ -1,5 +1,6 @@
 :root {
     --color-primary: #16596B;
+    --color-primary-dark: #114553;
     --color-primary-clear: #1f809b;
     --color-accent: #F8DA76;
     --color-accent-dark: #F8CA32;
@@ -17,6 +18,14 @@ html,
 body {
     margin: 0;
     padding: 0;
+    overflow-y: hidden;
+}
+
+#filter-toggle {
+    display: none;
+    width: 25px;
+    margin: 0 20px;
+    cursor: pointer;
 }
 
 .main-container {
@@ -37,7 +46,7 @@ body {
 }
 
 .search-results-container {
-    display: flex;
+    display: none;
     flex: 60%;
     height: 85vh;
     margin: 10px;
@@ -45,6 +54,49 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     overflow: auto;
+}
+
+.result-loader {
+    display: flex;
+    flex: 60%;
+    height: 85vh;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color:var(--color-primary);
+}
+
+.loader {
+    width: 50px;
+	height: 50px;
+	margin: 0 auto;
+	border-radius: 50%;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	box-shadow: 3px 3px 1px rgb(248,218,118);
+	animation: spin 750ms linear infinite;
+}
+
+.search-results-container.show-results {
+    display: flex;
+}
+
+.result-loader.show-results {
+    display: none;
+}
+
+.loader.show-results {
+    animation: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {  
+        transform: rotate(360deg); 
+    }
 }
 
 .container {
@@ -56,7 +108,7 @@ body {
     border: 2px solid black;
 }
 
-.container > div {
+.container>div {
     margin-bottom: 15px;
     padding: 0 10px;
 }
@@ -100,21 +152,25 @@ body {
     background-color: var(--color-primary-clear);
 }
 
-.radio, .checkbox {
+.radio,
+.checkbox {
     display: flex;
     align-items: center;
     cursor: pointer;
     margin-right: 10px;
 }
 
-.radio label, .checkbox label, .filter-distance-option label{
+.radio label,
+.checkbox label,
+.filter-distance-option label {
     font-family: 'Hind', sans-serif;
     font-size: 18px;
     padding-top: 3px;
     line-height: 1.5em;
 }
 
-.radio-input, .checkbox-input {
+.radio-input,
+.checkbox-input {
     display: none;
 }
 
@@ -162,7 +218,8 @@ body {
     transition: transform 0.2s;
 }
 
-.radio-input:checked + .radio-custom::after, .checkbox-input:checked + .checkbox-custom::after{
+.radio-input:checked+.radio-custom::after,
+.checkbox-input:checked+.checkbox-custom::after {
     transform: scale(1)
 }
 
@@ -252,7 +309,8 @@ body {
     padding: 0;
 }
 
-.restaurant-details label, .external-link-name {
+.restaurant-details label,
+.external-link-name {
     font-family: 'Hind', sans-serif;
     font-size: 15px;
 }
@@ -264,7 +322,8 @@ body {
     margin: 10px 0;
 }
 
-.yelp-external-link, .google-maps-external-link {
+.yelp-external-link,
+.google-maps-external-link {
     display: flex;
     flex: 20%;
     background-color: white;
@@ -276,23 +335,91 @@ body {
     cursor: pointer;
 }
 
-.yelp-external-link:hover, .google-maps-external-link:hover {
+.yelp-external-link:hover,
+.google-maps-external-link:hover {
     background-color: rgb(216, 215, 215);
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1275px) {
+    .restaurant-details label {
+        font-size: 14px;
+    }
+
+    .external-link-name {
+        font-size: 11px;
+    }
+
+    .result-container {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .radio label,
+    .checkbox label,
+    .filter-distance-option label {
+        font-size: 14px;
+    }
+
+    .search-filter-container {
+        flex: 25%;
+    }
+
     .search-results-container {
-        flex: 100%;
+        flex: 65%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #filter-toggle {
+        display: block;
     }
 
     .search-filter-container {
         position: absolute;
         top: 105%;
+        left: 15%;
+        right: 15%;
+        height: 75vh;
+    }
+
+    .main-container {
+        flex-wrap: wrap;
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 640px) {
     .result-container {
-        width: 60%;
+        width: 75%;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .result-container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .search-filter-container {
+        height: 70vh;
+    }
+}
+
+/*body {
+        background-color: var(--color-primary-dark);
+    }
+
+    .search-results-container {
+        z-index: -99;
+        opacity: 0.3;
+    }
+
+    .search-filter-container {
+        top: 20%;
+        z-index: 99;
+    }*/

@@ -15,6 +15,7 @@
     <nav>
         <div class="navigation-bar">
             <label class="logo"><a href="../index.html">MealVity</a></label>
+            <img id="filter-toggle" src="images/filter.svg"/>
         </div>
     </nav>
 
@@ -105,8 +106,19 @@
                 </div>
             </div>
         </div>
+        <div class="result-loader">
+            <div class="loader"></div>
+        </div>
         <div class="search-results-container">
-            <div class="result-container">
+        </div>
+    </div>
+
+    <script src="script_search_results.js" type="module"></script>
+</body>
+
+<!-- 
+
+    <div class="result-container">
                 <img class="restaurant-image" src="images/example2.jpg" alt="Image">
                 <div class="restaurant-content">
                     <div class="restaurant-name">
@@ -142,44 +154,6 @@
                         <div class="google-maps-external-link">
                             <p class="external-link-name">Google Maps</p>
                             <img src="images/google-maps.svg" alt="Google Maps">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script_search_results.js" type="module"></script>
-</body>
-
-<!-- 
-
-    <div class="result-container">
-                <img class="restaurant-image" src="images/example2.jpg" alt="Image">
-                <div class="restaurant-content">
-                    <div class="restaurant-name">
-                        Restaurant name
-                    </div>
-                    <div class="restaurant-details">
-                        <div>
-                            <img src="images/spoon.png" alt="Cusine">
-                            <label>Cuisine</label>
-                        </div>
-                        <div>
-                            <img src="images/pin.png" alt="Address">
-                            <label>Address</label>
-                        </div>
-                        <div>
-                            <img src="images/euro.png" alt="Price">
-                            <label>Price</label>
-                        </div>
-                        <div>
-                            <img src="images/distance.png" alt="Distance">
-                            <label>Distance</label>
-                        </div>
-                        <div>
-                            <img src="images/star.png" alt="Rating">
-                            <label>Rating</label>
                         </div>
                     </div>
                 </div>

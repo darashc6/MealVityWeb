@@ -1,5 +1,7 @@
 let restaurantsList = [];
 const searchResultsContainer = document.querySelector('.search-results-container');
+const resultLoader = document.querySelector('.result-loader')
+const loader = document.querySelector('.loader')
 
 let radioSortBy = document.querySelectorAll('.radio-input');
 let prevRadioValue = "best-match";
@@ -39,6 +41,38 @@ checkboxOpen.addEventListener('change', () => {
         filterParameters();
     }
 });
+
+let filterToggle = document.querySelector('#filter-toggle');
+let filterTabOpen = false;
+const searchFilterContainer = document.querySelector('.search-filter-container')
+
+filterToggle.addEventListener('click', () => {
+    console.log('clicked')
+    if (!filterTabOpen) {
+        filterTabOpen = true
+        openFilterTab();
+    } else {
+        filterTabOpen = false;
+        closeFilterTab();
+    }
+    document.body.style.transition = 'background-color 0.7s'
+    searchResultsContainer.style.transition = 'opacity 0.7s'
+    searchFilterContainer.style.transition = 'top 0.7s'
+});
+
+window.addEventListener('resize', () => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth > 900) {
+        if (filterTabOpen) {
+            filterTabOpen = false;
+            closeFilterTab();
+
+            document.body.style.transition = 'none'
+            searchResultsContainer.style.transition = 'none'
+            searchFilterContainer.style.transition = 'none'
+        }
+    }
+})
 
 function createContainer(restaurantData) {
     const resultContainer = document.createElement('div');
@@ -123,6 +157,9 @@ function createContainer(restaurantData) {
 }
 
 async function fetchYelp(extraParams) {
+    if (restaurantsList.length !== 0) {
+        showResultsToggle();
+    }
     const params = {
         location: sessionStorage.getItem('address')
     };
@@ -147,6 +184,7 @@ async function fetchYelp(extraParams) {
     });
 
     filterRestaurantList(prevRadioValue);
+    showResultsToggle();
     setupYelpLinks(restaurantsList);
     setupGoogleMapsLinks(restaurantsList);
 }
@@ -235,7 +273,7 @@ function setupYelpLinks(restaurantList) {
     const yelpExternalLinks = document.querySelectorAll('.yelp-external-link');
 
     yelpExternalLinks.forEach(link => {
-        link.addEventListener('click', ()=> {
+        link.addEventListener('click', () => {
             window.open(restaurantList[[].indexOf.call(yelpExternalLinks, link)].url, '_blank');
         });
     });
@@ -246,7 +284,7 @@ function setupGoogleMapsLinks(restaurantList) {
     const googleMapsExternalLinks = document.querySelectorAll('.google-maps-external-link');
 
     googleMapsExternalLinks.forEach(link => {
-        link.addEventListener('click', ()=> {
+        link.addEventListener('click', () => {
             const index = [].indexOf.call(googleMapsExternalLinks, link);
             const restaurantName = restaurantList[index].name;
             const restaurantCoordinates = restaurantsList[index].coordinates;
@@ -255,6 +293,28 @@ function setupGoogleMapsLinks(restaurantList) {
         });
     })
 
+}
+
+function showResultsToggle() {
+    resultLoader.classList.toggle('show-results');
+    loader.classList.toggle('show-results');
+    searchResultsContainer.classList.toggle('show-results');
+}
+
+function openFilterTab() {
+    document.body.style.backgroundColor = 'var(--color-primary-dark)';
+    searchResultsContainer.style.opacity = '0.3'
+    searchResultsContainer.style.zIndex = '-99'
+    searchFilterContainer.style.top = '90px'
+    searchFilterContainer.style.zIndex = '99'
+}
+
+function closeFilterTab() {
+    document.body.style.backgroundColor = 'var(--color-primary)';
+    searchResultsContainer.style.opacity = '1'
+    searchResultsContainer.style.zIndex = '1'
+    searchFilterContainer.style.top = '105%'
+    searchFilterContainer.zIndex = '1'
 }
 
 fetchYelp([]);
