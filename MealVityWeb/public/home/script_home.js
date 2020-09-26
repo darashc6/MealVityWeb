@@ -41,10 +41,14 @@ btnSearch.addEventListener('click', () => {
     }
 });
 
+/**
+ * Fetches address results with the given input
+ * Endpoint used: https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/endpoint-autosuggest-brief.html
+ * For more info about the API: https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html
+ */
 async function fetchAutocomplete() {
     const response = await fetch(`/autocomplete/${inputAddress.value}`);
     const autocomplete_json = await response.json();
-    // console.log(autocomplete_json)
 
     autocompleteResultsDiv.innerHTML = '';
     autocomplete_json.items.map(result => {
@@ -52,6 +56,10 @@ async function fetchAutocomplete() {
     });
 }
 
+/**
+ * Creates a div containing the address
+ * @param {string} address Address
+ */
 function createAutocompleteResult(address) {
     const resultDiv = document.createElement('div');
     resultDiv.classList.add('result');

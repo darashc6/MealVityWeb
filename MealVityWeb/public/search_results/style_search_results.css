@@ -403,23 +403,3 @@ body {
         width: 90%;
     }
 }
-
-@media screen and (max-height: 480px) {
-    .search-filter-container {
-        height: 70vh;
-    }
-}
-
-/*body {
-        background-color: var(--color-primary-dark);
-    }
-
-    .search-results-container {
-        z-index: -99;
-        opacity: 0.3;
-    }
-
-    .search-filter-container {
-        top: 20%;
-        z-index: 99;
-    }*/

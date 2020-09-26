@@ -1,22 +1,28 @@
-let restaurantsList = [];
+let restaurantsList = []; // List of restaurants 
+let categoriesList = []; // List of categories
+let selectedCategories = []; // List of selected categories
+let extraParameters = ['', 1, false]; // Extra parameters used in the search query
+
 const searchResultsContainer = document.querySelector('.search-results-container');
-const resultLoader = document.querySelector('.result-loader')
-const loader = document.querySelector('.loader')
+const filterByCategoriesOptions = document.querySelector('.filter-by-categories-options');
+const filterByPricesOptions = document.querySelector('.filter-by-prices-options');
+const resultLoader = document.querySelector('.result-loader');
+const loader = document.querySelector('.loader');
 
 let radioSortBy = document.querySelectorAll('.radio-input');
-let prevRadioValue = "best-match";
+let currentRadioValue = 'best-match';
 radioSortBy.forEach((radio) => {
     radio.addEventListener('click', () => {
-        if (prevRadioValue !== radio.value) {
-            filterRestaurantList(radio.value);
+        if (currentRadioValue !== radio.value) {
+            currentRadioValue = radio.value;
+            sortRestaurantList(currentRadioValue, restaurantsList);
         }
-        prevRadioValue = radio.value;
     });
 });
 
-let checkboxPrice = document.querySelectorAll('.checkbox-price');
-let inputDistance = document.querySelector('.input-distance');
-let checkboxOpen = document.querySelector('.checkbox-open');
+const inputDistance = document.querySelector('.input-distance');
+const checkboxOpen = document.querySelector('.checkbox-open');
+const checkboxPrice = document.querySelectorAll('.checkbox-price');
 
 checkboxPrice.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
@@ -29,6 +35,8 @@ checkboxPrice.forEach(checkbox => {
 inputDistance.addEventListener('input', () => {
     if (inputDistance.value > 40) {
         inputDistance.value = 40;
+    } else if (inputDistance.value < 1) {
+        inputDistance.value = 1;
     }
 
     if (inputDistance.value !== '') {
@@ -42,12 +50,11 @@ checkboxOpen.addEventListener('change', () => {
     }
 });
 
-let filterToggle = document.querySelector('#filter-toggle');
-let filterTabOpen = false;
-const searchFilterContainer = document.querySelector('.search-filter-container')
+const filterToggle = document.querySelector('#filter-toggle');
+const searchFilterContainer = document.querySelector('.search-filter-container');
+let filterTabOpen = false; // True if the filter tab is open, false if otherwise
 
 filterToggle.addEventListener('click', () => {
-    console.log('clicked')
     if (!filterTabOpen) {
         filterTabOpen = true
         openFilterTab();
@@ -74,137 +81,180 @@ window.addEventListener('resize', () => {
     }
 })
 
-function createContainer(restaurantData) {
-    const resultContainer = document.createElement('div');
-    resultContainer.classList.add('result-container');
-    searchResultsContainer.appendChild(resultContainer);
+/**
+ * Creates a 'div' container for each Restaurant from the restaurantList
+ * @param {object} restaurantData Object containing restaurant data
+ */
+function createRestaurantContainer(restaurantData) {
+    const restaurantHTML = `<div class="result-container">
+    <img class="restaurant-image" src="${restaurantData.image_url}" alt="Restaurant Image">
+    <div class="restaurant-content">
+        <div class="restaurant-name">
+            ${restaurantData.name}
+        </div>
+        <div class="restaurant-details">
+            <div>
+                <img src="images/spoon.png" alt="Cusine">
+                <label>${displayAllCategories(restaurantData.categories)}</label>
+            </div>
+            <div>
+                <img src="images/pin.png" alt="Address">
+                <label>${restaurantData.location.address1}</label>
+            </div>
+            <div>
+                <img src="images/euro.png" alt="Price">
+                <label>${restaurantData.price}</label>
+            </div>
+            <div>
+                <img src="images/distance.png" alt="Distance">
+                <label>${Math.floor(restaurantData.distance)} m</label>
+            </div>
+            <div>
+                <img src="images/star.png" alt="Rating">
+                <label>${restaurantData.rating}</label>
+            </div>
+        </div>
+        <div class="external-links">
+            <div class="yelp-external-link">
+                <p class="external-link-name">Visit Yelp</p>
+                <img src="images/yelp.svg" alt="Yelp">
+            </div>
+            <div class="google-maps-external-link">
+                <p class="external-link-name">Google Maps</p>
+                <img src="images/google-maps.svg" alt="Google Maps">
+            </div>
+        </div>
+    </div>
+    </div>`
 
-    const restaurantImage = document.createElement('img');
-    restaurantImage.classList.add('restaurant-image');
-    restaurantImage.src = restaurantData.image_url;
-    const restaurantContent = document.createElement('div');
-    restaurantContent.classList.add('restaurant-content');
-    const externalLinksDiv = document.createElement('div');
-    externalLinksDiv.classList.add('external-links');
-    resultContainer.append(restaurantImage, restaurantContent, externalLinksDiv);
-
-    const restaurantNameDiv = document.createElement('label');
-    restaurantNameDiv.classList.add('restaurant-name');
-    restaurantNameDiv.textContent = restaurantData.name;
-    const restaurantDetailsDiv = document.createElement('div');
-    restaurantDetailsDiv.classList.add('restaurant-details');
-    restaurantContent.append(restaurantNameDiv, restaurantDetailsDiv);
-
-    const cuisineDiv = document.createElement('div');
-    const cuisineImg = document.createElement('img');
-    cuisineImg.src = 'images/spoon.png';
-    const cuisineLabel = document.createElement('label');
-    cuisineLabel.textContent = restaurantData.categories[0].title;
-    cuisineDiv.append(cuisineImg, cuisineLabel);
-    restaurantDetailsDiv.appendChild(cuisineDiv);
-
-    const addressDiv = document.createElement('div');
-    const addressImg = document.createElement('img');
-    addressImg.src = 'images/pin.png';
-    const addressLabel = document.createElement('label');
-    addressLabel.textContent = restaurantData.location.address1;
-    addressDiv.append(addressImg, addressLabel);
-    restaurantDetailsDiv.appendChild(addressDiv);
-
-    const priceDiv = document.createElement('div');
-    const priceImg = document.createElement('img');
-    priceImg.src = 'images/euro.png';
-    const priceLabel = document.createElement('label');
-    priceLabel.textContent = restaurantData.price;
-    priceDiv.append(priceImg, priceLabel);
-    restaurantDetailsDiv.appendChild(priceDiv);
-
-    const distanceDiv = document.createElement('div');
-    const distanceImg = document.createElement('img');
-    distanceImg.src = 'images/distance.png';
-    const distanceLabel = document.createElement('label');
-    distanceLabel.textContent = `${Math.floor(restaurantData.distance)} m`;
-    distanceDiv.append(distanceImg, distanceLabel);
-    restaurantDetailsDiv.appendChild(distanceDiv);
-
-    const ratingDiv = document.createElement('div');
-    const ratingImg = document.createElement('img');
-    ratingImg.src = 'images/star.png';
-    const ratingLabel = document.createElement('label');
-    ratingLabel.textContent = restaurantData.rating;
-    ratingDiv.append(ratingImg, ratingLabel);
-    restaurantDetailsDiv.appendChild(ratingDiv);
-
-    const yelpExternalLink = document.createElement('div');
-    yelpExternalLink.classList.add('yelp-external-link');
-    const googleMapsExternalLink = document.createElement('div');
-    googleMapsExternalLink.classList.add('google-maps-external-link');
-    externalLinksDiv.append(yelpExternalLink, googleMapsExternalLink);
-
-    const yelpExternalLinkName = document.createElement('p');
-    yelpExternalLinkName.textContent = 'Visit Yelp';
-    yelpExternalLinkName.classList.add('external-link-name');
-    const yelpImage = document.createElement('img');
-    yelpImage.src = 'images/yelp.svg';
-    yelpExternalLink.append(yelpExternalLinkName, yelpImage)
-
-    const GoogleMapsExternalLinkName = document.createElement('p');
-    GoogleMapsExternalLinkName.textContent = 'Google Maps';
-    GoogleMapsExternalLinkName.classList.add('external-link-name');
-    const GoogleMapsImage = document.createElement('img');
-    GoogleMapsImage.src = 'images/google-maps.svg';
-    googleMapsExternalLink.append(GoogleMapsExternalLinkName, GoogleMapsImage)
+    searchResultsContainer.insertAdjacentHTML('beforeend', restaurantHTML);
 }
-
+ /**
+  * Fetches from the Yelp Fusion API
+  * Endpoint used: https://www.yelp.com/developers/documentation/v3/business_search
+  * For more info about the API: https://www.yelp.com/developers/documentation/v3
+  * @param {*} extraParams Parameters used in the search query
+  */
 async function fetchYelp(extraParams) {
-    if (restaurantsList.length !== 0) {
-        showResultsToggle();
-    }
     const params = {
         location: sessionStorage.getItem('address')
     };
 
-    if (extraParams.length === 0) {
-        params.radius = 1000;
-    } else {
-        if (extraParams[0] !== '') params.price = extraParams[0];
-        params.radius = extraParams[1] * 1000;
-        if (extraParams[2] === true) params.open_now = extraParams[2];
+    if (extraParams[0] !== '') params.price = extraParams[0];
+    params.radius = extraParams[1] * 1000;
+    if (extraParams[2] === true) params.open_now = extraParams[2];
+
+    try {
+        const response = await fetch(`/business_search/${JSON.stringify(params)}`);
+        const json = await response.json();
+        const totalRestaurants = json.businesses;
+        restaurantsList = [];
+        categoriesList = [];
+        selectedCategories = [];
+
+        // Some objects from the JSON contains incomplete info, Therefore, we add to a separate list only those objects that have all the info
+        totalRestaurants.map(restaurant => {
+            if (restaurant.image_url !== "" && restaurant.display_phone !== "" && restaurant.distance !== "" && restaurant.location.address1 !== null && restaurant.price !== undefined) {
+                restaurantsList.push(restaurant);
+                addCategoryToCategoriesList(restaurant.categories);
+            }
+        });
+
+        sortRestaurantList(currentRadioValue, restaurantsList);
+        setupCategoryOptions();
+        showResultsToggle();
+    } catch (err) {
+        console.error(err);
     }
+}
 
-    const response = await fetch(`/business_search/${JSON.stringify(params)}`);
-    const json = await response.json();
-    const totalRestaurants = json.businesses;
-    restaurantsList = [];
-
-    totalRestaurants.map(restaurant => {
-        if (restaurant.image_url !== "" && restaurant.display_phone !== "" && restaurant.distance !== "" && restaurant.location.address1 !== null && restaurant.price !== undefined) {
-            restaurantsList.push(restaurant);
+/**
+ * Saves the restaurant categories in a different list
+ * This list can later be used for filtering
+ * @param {*} restaurantCategories Array of Restaurant categories
+ */
+function addCategoryToCategoriesList(restaurantCategories) {
+    restaurantCategories.forEach(category => {
+        if (!categoriesList.includes(category.title)) {
+            categoriesList.push(category.title);
         }
     });
-
-    filterRestaurantList(prevRadioValue);
-    showResultsToggle();
-    setupYelpLinks(restaurantsList);
-    setupGoogleMapsLinks(restaurantsList);
 }
 
+/**
+ * Displays each category from categoriesList as a checkbox.
+ */
+function setupCategoryOptions() {
+    filterByCategoriesOptions.innerHTML = '';
+    categoriesList.sort().forEach(category => {
+        const categoryHTML = `<label class="checkbox">
+        <input type="checkbox" class="checkbox-input checkbox-category" value="${category}">
+        <div class="checkbox-custom"></div>
+        <label>${category}</label>
+        </label>`;
+
+        filterByCategoriesOptions.insertAdjacentHTML('beforeend', categoryHTML);
+    });
+
+
+    const checkboxCategories = document.querySelectorAll('.checkbox-category');
+    checkboxCategories.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                selectedCategories.push(checkbox.value);
+            } else {
+                const index = selectedCategories.indexOf(checkbox.value);
+                selectedCategories.splice(index, 1);
+            }
+
+            if (selectedCategories.length > 0) {
+                filterRestaurantListWithCategories(selectedCategories);
+            } else {
+                sortRestaurantList(currentRadioValue, restaurantsList);
+            }
+        });
+    });
+}
+
+/**
+ * Converts the array of Restaurant categories to String
+ * @param {*} arrayCategories Array of Restaurant categories
+ */
+function displayAllCategories(arrayCategories) {
+    let stringCategories = "";
+    arrayCategories.forEach(category => {
+        stringCategories += `${category.title}, `
+    });
+
+    return stringCategories.substring(0, stringCategories.length - 2)
+}
+
+/**
+ * Scans the 'Price', 'Distance' & 'Open Restaurants' checkboxes and adds the results from those checkboxes to a list
+ */
 function filterParameters() {
-    searchResultsContainer.innerHTML = ''
-    var extraParameters = []
+    searchResultsContainer.innerHTML = '';
+    extraParameters = [];
     if (filterCheckboxPrices() !== '') {
-        extraParameters.push(filterCheckboxPrices())
+        extraParameters.push(filterCheckboxPrices());
     } else {
-        extraParameters.push('')
+        extraParameters.push('');
     }
-    extraParameters.push(filterInputDistance())
-    extraParameters.push(filterOpenRestaurants())
+    extraParameters.push(filterInputDistance());
+    extraParameters.push(filterOpenRestaurants());
 
-    fetchYelp(extraParameters)
+    showResultsToggle();
+    fetchYelp(extraParameters);
 }
 
+/**
+ * Returns the 'Price' checkboxes checked value in the form of a String, separated of commas
+ * @returns String with the checkboxes checked value, separated of commas
+ */
 function filterCheckboxPrices() {
-    var stringPricesSelected = ""
+    let stringPricesSelected = ""
+    const checkboxPrice = document.querySelectorAll('.checkbox-price');
+
     checkboxPrice.forEach(checkbox => {
         if (checkbox.checked) {
             stringPricesSelected += checkbox.value + ','
@@ -213,10 +263,18 @@ function filterCheckboxPrices() {
     return stringPricesSelected.substring(0, stringPricesSelected.length - 1)
 }
 
+/**
+ * Returns the 'Distance' input value
+ * @returns Input value from the 'Distance' form
+ */
 function filterInputDistance() {
     return inputDistance.value
 }
 
+/**
+ * Returns the checkbox value from the 'Open Restaurant' form
+ * @returns Boolean with the checkbox value from the 'Open Restaurant' form. True is checked, false if otherwise
+ */
 function filterOpenRestaurants() {
     if (checkboxOpen.checked) {
         return true
@@ -225,82 +283,122 @@ function filterOpenRestaurants() {
     }
 }
 
-function filterRestaurantList(radioValue) {
+/**
+ * Filters restaurants from the restaurantList containing the selected categories
+ * @param {array} selectedCat Array of string with the categories selected
+ */
+function filterRestaurantListWithCategories(selectedCat) {
+    let restaurantListWithCategories = [];
+    selectedCat.forEach(selected => {
+        console.log(selected);
+        restaurantsList.forEach(restaurant => {
+            restaurant.categories.forEach(category => {
+                if (category.title === selected) {
+                    restaurantListWithCategories.push(restaurant);
+                }
+            });
+        });
+    });
+
+    sortRestaurantList(currentRadioValue, restaurantListWithCategories);
+}
+
+/**
+ * Sorts the restaurant list depending on the radio button selected from the 'Sort by' form
+ * @param {string} radioValue Value of the radio button selected
+ * @param {array} listToFilter restaurant list to filter
+ */
+function sortRestaurantList(radioValue, listToFilter) {
     searchResultsContainer.innerHTML = ''
-    const filteredRestaurantsList = restaurantsList.slice()
+    const sortedRestaurantList = listToFilter.slice();
     switch (radioValue) {
         case "best-match":
-            reorderRestaurantList(restaurantsList);
+            displayRestaurantList(sortedRestaurantList);
             break;
         case "ratings":
-            filteredRestaurantsList.sort((a, b) => {
+            sortedRestaurantList.sort((a, b) => {
                 return b.rating - a.rating
             });
-            reorderRestaurantList(filteredRestaurantsList);
+            displayRestaurantList(sortedRestaurantList);
 
             break;
         case "distance":
-            filteredRestaurantsList.sort((a, b) => {
+            sortedRestaurantList.sort((a, b) => {
                 return a.distance - b.distance;
             });
-            reorderRestaurantList(filteredRestaurantsList);
+            displayRestaurantList(sortedRestaurantList);
 
             break;
         case "cheapest":
-            filteredRestaurantsList.sort((a, b) => {
+            sortedRestaurantList.sort((a, b) => {
                 return a.price.length - b.price.length;
             });
-            reorderRestaurantList(filteredRestaurantsList);
+            displayRestaurantList(sortedRestaurantList);
 
             break;
         case "expensive":
-            filteredRestaurantsList.sort((a, b) => {
+            sortedRestaurantList.sort((a, b) => {
                 return b.price.length - a.price.length;
             });
-            reorderRestaurantList(filteredRestaurantsList);
+            displayRestaurantList(sortedRestaurantList);
 
             break;
     }
 }
 
-function reorderRestaurantList(restaurantList) {
+/**
+ * Displays the restaurant list to the 'search-results-container' div.
+ * @param {array} restaurantList The restaurant list to show
+ */
+function displayRestaurantList(restaurantList) {
     restaurantList.map(restaurant => {
-        createContainer(restaurant);
+        createRestaurantContainer(restaurant);
+
+        setupYelpLink(restaurant);
+        setupGoogleMapsLink(restaurant);
     });
 }
 
-function setupYelpLinks(restaurantList) {
+/**
+ * Sets up a Yelp link to open in a new window
+ * @param {*} restaurant Restaurant with the Yelp link
+ */
+function setupYelpLink(restaurant) {
     const yelpExternalLinks = document.querySelectorAll('.yelp-external-link');
 
-    yelpExternalLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            window.open(restaurantList[[].indexOf.call(yelpExternalLinks, link)].url, '_blank');
-        });
+    yelpExternalLinks[yelpExternalLinks.length - 1].addEventListener('click', () => {
+        window.open(restaurant.url);
     });
 }
 
-
-function setupGoogleMapsLinks(restaurantList) {
+/**
+ * Sets up a Google Maps link to open in a new window
+ * @param {*} restaurant Restaurant with the location coordinates
+ */
+function setupGoogleMapsLink(restaurant) {
     const googleMapsExternalLinks = document.querySelectorAll('.google-maps-external-link');
 
-    googleMapsExternalLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const index = [].indexOf.call(googleMapsExternalLinks, link);
-            const restaurantName = restaurantList[index].name;
-            const restaurantCoordinates = restaurantsList[index].coordinates;
+    googleMapsExternalLinks[googleMapsExternalLinks.length - 1].addEventListener('click', () => {
+        const restaurantName = restaurant.name;
+        const restaurantCoordinates = restaurant.coordinates;
 
-            window.open(`https://www.google.com/maps/search/${restaurantName}/@${restaurantCoordinates.latitude},${restaurantCoordinates.longitude}`);
-        });
-    })
-
+        window.open(`https://www.google.com/maps/search/${restaurantName}/@${restaurantCoordinates.latitude},${restaurantCoordinates.longitude}`);
+    });
 }
 
+/**
+ * Uses the 'show-results' style to toggle between the loading animation and the results container
+ */
 function showResultsToggle() {
     resultLoader.classList.toggle('show-results');
     loader.classList.toggle('show-results');
     searchResultsContainer.classList.toggle('show-results');
 }
 
+/**
+ * Opens the filter tab when you click on the icon
+ * Note: The icon is only displayed in smaller screens
+ */
 function openFilterTab() {
     document.body.style.backgroundColor = 'var(--color-primary-dark)';
     searchResultsContainer.style.opacity = '0.3'
@@ -309,6 +407,10 @@ function openFilterTab() {
     searchFilterContainer.style.zIndex = '99'
 }
 
+/**
+ * Closes the filter tab when you click on the icon
+ * Note: The icon is only displayed in smaller screens
+ */
 function closeFilterTab() {
     document.body.style.backgroundColor = 'var(--color-primary)';
     searchResultsContainer.style.opacity = '1'
@@ -317,4 +419,4 @@ function closeFilterTab() {
     searchFilterContainer.zIndex = '1'
 }
 
-fetchYelp([]);
+fetchYelp(extraParameters);
