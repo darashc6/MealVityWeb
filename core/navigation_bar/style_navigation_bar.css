@@ -1,0 +1,116 @@
+.logo {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 15px 100px;
+  color: var(--text-primary);
+}
+
+.navigation-bar {
+  background-color: var(--color-accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-links a,
+.navigation-bar a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.navigation-links a:hover,
+.navigation-bar a:hover {
+  color: var(--text-primary);
+}
+
+.navigation-links {
+  list-style: none;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-primary);
+  margin: 5px;
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.navigation-links li {
+  display: inline-block;
+  margin-right: 50px;
+  font-family: "Hind", sans-serif;
+}
+
+.navigation-links li:hover:not(:last-child) {
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.iconify {
+  font-size: 1.4em;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.active-page {
+  border-bottom: 2px solid var(--color-primary);
+  padding: 0 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .burger {
+    display: block;
+    margin-right: 75px;
+  }
+
+  .navigation-bar {
+    flex-wrap: wrap;
+  }
+
+  .navigation-links {
+    display: none;
+    flex: 100%;
+    flex-direction: column;
+    align-items: center;
+    order: 2;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navigation-links li {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .navigation-links li:hover {
+    background-color: var(--color-accent-dark);
+    border-bottom: 0;
+    cursor: pointer;
+  }
+
+  .active-page {
+    border-bottom: 0;
+    padding: 0;
+  }
+
+  .navigation-links.mobile {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .burger {
+    margin-right: 50px;
+  }
+
+  .logo {
+    padding: 15px 50px;
+  }
+}

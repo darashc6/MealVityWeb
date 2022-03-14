@@ -1,0 +1,485 @@
+.search-main-container {
+  display: flex;
+  padding: 30px 0;
+  background-color: var(--color-accent);
+}
+
+.order-online-image img,
+.book-table-image img {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.order-online-container,
+.book-table-container {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 40%;
+  align-items: center;
+}
+
+.address-form-container {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 35%;
+  align-items: center;
+}
+
+.order-online-text,
+.book-table-text {
+  font-family: "Hind", sans-serif;
+  font-weight: 800;
+  font-size: var(--font-type-1);
+  color: var(--black);
+  margin-top: 20px;
+  line-height: 100%;
+  text-align: center;
+}
+
+.website-slogan {
+  font-family: "Hind", sans-serif;
+  font-weight: 800;
+  font-size: var(--font-type-1);
+  line-height: 100%;
+  text-align: center;
+  color: var(--black);
+}
+
+.address-form {
+  width: 100%;
+  height: 110px;
+  margin: 40px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.form-title {
+  text-align: center;
+  margin: 10px 10px;
+  font-family: "Oswald", sans-serif;
+  font-size: var(--font-type-paragraph-1);
+  font-weight: 700;
+}
+
+.restaurant-search-form {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.result {
+  position: relative;
+  background-color: white;
+  width: 20vw;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: var(--font-type-paragraph-1);
+  cursor: default;
+}
+
+.result:hover {
+  background-color: rgb(233, 230, 230);
+}
+
+.input-address {
+  width: 20vw;
+  padding: 3px;
+}
+
+#btn-search {
+  max-height: 30px;
+  background-color: #c69d14;
+  padding: 3px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.cuisine-main-container {
+  width: 100%;
+  height: auto;
+  padding: 10px 0;
+}
+
+.cuisine-container-header {
+  font-family: "Oswald";
+  font-weight: 700;
+  font-size: var(--font-type-1);
+  text-align: center;
+  color: var(--normal-mode-color-accent);
+}
+
+.long-underline-text {
+  border-bottom: 2px solid var(--color-accent);
+  padding: 0 20px;
+  margin-bottom: 15px;
+}
+
+.cuisine-container-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.cuisine-image img {
+  display: block;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.cuisine-item {
+  border: 2px solid black;
+  background: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cuisine-name {
+  font-family: "Oswald", sans-serif;
+  font-size: var(--font-type-paragraph-1);
+  font-weight: 700;
+  margin: 0;
+  color: var(--black);
+}
+
+.long-overline-text {
+  border-top: 2px solid var(--black);
+  padding: 0 75px;
+  margin-top: 8px;
+}
+
+#btn-search {
+  color: black;
+}
+
+/** Cookies **/
+.cookie-wrapper-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  display: none;
+}
+
+.cookie-wrapper-container.active {
+  display: block;
+}
+
+.cookie-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: var(--color-primary);
+  color: var(--color-accent);
+  padding: 0 32px;
+
+  box-shadow: 0 -2px 16px rgba(47, 54, 64, 0.15);
+  transition: transform 400ms;
+
+  z-index: 99;
+}
+
+.cookie-wrapper a {
+  color: var(--color-accent-dark);
+}
+
+.cookie-wrapper a:hover {
+  color: var(--color-accent-darker);
+}
+
+.cookie-text {
+  margin: 18px 0;
+  font-size: 1.6em;
+  line-height: 1.2;
+}
+
+.policy-link {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.cookie-btn {
+  background: var(--color-accent);
+  border: 0;
+  color: var(--color-primary);
+  padding: 12px 48px;
+  font-size: 1.6em;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cookie-btn:hover {
+  background: var(--color-accent-dark);
+}
+/** End Cookies **/
+
+/** Discount newsletter **/
+.discount-form-container,
+.settings-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  z-index: 99;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.discount-form-container.active,
+.settings-modal-container.active {
+  display: flex;
+}
+
+.discount-form {
+  width: 700px;
+  height: max-content;
+  background-color: var(--color-primary);
+  color: var(--color-accent);
+
+  z-index: 99;
+}
+
+.discount-form img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+#discount-form-input-email {
+  margin: 4px 0;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.discount-form .subscribe-btn {
+  margin: 4px 0;
+  border-radius: 3px;
+  border: none;
+  background-color: var(--color-accent-dark);
+  color: var(--color-primary);
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.discount-form .subscribe-btn:hover {
+  background-color: var(--color-accent-darker);
+}
+
+.discount-form .close-btn {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/** End discount form **/
+
+/** Settings modal **/
+.settings-modal {
+  width: 300px;
+  background-color: var(--color-accent);
+  padding: 10px;
+}
+
+.header-text {
+  color: var(--black);
+}
+
+.modal-font-size-option-container,
+.modal-background-color-option-container,
+.modal-mode-option-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.modal-background-color-option-container > div {
+  display: flex;
+}
+
+.modal-background-color-option-container p,
+.modal-font-size-option-container p,
+.modal-mode-option-container p {
+  padding-right: 5px;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: var(--black);
+}
+
+#input-font-size,
+#input-background-color {
+  width: 80px;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 25px;
+  padding: 1rem 0;
+}
+
+.modal-btns button {
+  margin: 0 5px;
+}
+
+.input-field {
+  padding: 5px 0;
+}
+/** End Settings Modal **/
+
+/** Footer **/
+.footer {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0;
+  background-color: var(--color-accent);
+}
+
+.footer a {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+/** End footer **/
+
+@media screen and (max-width: 1200px) {
+  .cuisine-image img {
+    width: 25%;
+  }
+
+  .form-title {
+    font-size: 20px;
+  }
+
+  .order-online-container,
+  .book-table-container {
+    justify-content: flex-end;
+  }
+
+  .order-online-text,
+  .book-table-text {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cuisine-image img {
+    width: 20%;
+  }
+
+  .cuisine-item {
+    flex: 40%;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  .website-slogan {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cuisine-name {
+    font-size: 18px;
+  }
+
+  .search-main-container {
+    flex-wrap: wrap;
+  }
+
+  .book-table-container,
+  .order-online-container {
+    order: 1;
+    flex: 20%;
+  }
+
+  .address-form-container {
+    margin-top: 50px;
+    flex: 100%;
+    order: 2;
+  }
+
+  .address-form {
+    width: 85%;
+  }
+
+  .input-address,
+  .result {
+    width: 50vw;
+  }
+
+  .website-slogan {
+    font-size: 35px;
+  }
+
+  .order-online-image img,
+  .book-table-image img {
+    display: block;
+    margin: 0 auto;
+    width: 75%;
+  }
+
+  .discount-form {
+    width: 70%;
+  }
+
+  .discount-form .row {
+    --bs-gutter-x: 0;
+  }
+
+  .discount-form #subscription-form {
+    padding: 25px 10px;
+  }
+
+  .discount-form img {
+    height: 170px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cuisine-container-header {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cuisine-container-header {
+    font-size: 18px;
+  }
+
+  .cuisine-name {
+    font-size: 15px;
+  }
+
+  .cuisine-item {
+    flex: 30%;
+  }
+
+  .long-overline-text {
+    padding: 0 50px;
+  }
+
+  .long-underline-text {
+    padding: 0;
+  }
+}
