@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -9,6 +10,11 @@ app.listen(process.env.PORT || 3000, () => {
 
 app.use(express.static('public'));
 app.use(express.json());
+app.use(cors())
+
+app.get("/", (req, res) => {
+    res.send("Hello World!")
+})
 
 // Yelp Fusion API
 // Endpoint used: https://www.yelp.com/developers/documentation/v3/business_search
