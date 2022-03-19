@@ -69,8 +69,6 @@ $(document).ready(function () {
     $("#new-account-form").submit(function (e) {
         e.preventDefault();
 
-        let isValid = false;
-
         let fullName = $("#full-name").val();
         let phoneNumber = $("#phone-number").val();
         let email = $("#email").val();
@@ -78,20 +76,30 @@ $(document).ready(function () {
         let repeatPassword = $("#repeat-password").val();
 
         if (password === repeatPassword) {
-            isValid = true
-        }
+            let userAlreadyExists = checkUser(email);
 
-        if (isValid) {
-            newUser = {
-                "fullName": fullName,
-                "phoneNumber": phoneNumber,
-                "email": email,
-                "password": password,
-                "repeatPassword": repeatPassword
+            if (userAlreadyExists) {
+                alert("User already exists, please insert a new email")
+            } else {
+                newUser = {
+                    "fullName": fullName,
+                    "phoneNumber": phoneNumber,
+                    "email": email,
+                    "password": password,
+                    "repeatPassword": repeatPassword
+                }
+
+                saveUserToDb(newUser);
+                alert("New account created!");
+
+                $("#full-name").val("");
+                $("#phone-number").val("");
+                $("#email").val("");
+                $("#password").val("");
+                $("#repeat-password").val("");
             }
-
-            saveUserToDb(newUser);
-            alert("New account created!");
+        } else {
+            alert("Passwords do not match");
         }
     });
 
@@ -106,6 +114,9 @@ $(document).ready(function () {
 
         if (userLoggedIn) {
             alert("User successfully logged in!");
+
+            $("#login-email").val("");
+            $("#login-password").val("");
         } else {
             alert("User credentials do not match. Please try again.")
         }
@@ -115,6 +126,11 @@ $(document).ready(function () {
 function loadUsers() {
     const usersJsonString = localStorage.getItem("users") || "[]";
     users = JSON.parse(usersJsonString)
+}
+
+function checkUser(email) {
+    const userFound = users.find(user => user.email === email)
+    return userFound || false;
 }
 
 function saveUserToDb(newUser) {
