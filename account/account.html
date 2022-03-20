@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="style_account.css">
     <link rel="stylesheet" href="../core/navigation_bar/style_navigation_bar.css">
+    <link rel="stylesheet" href="../core/settings_modal/style_settings_modal.css">
+    <link rel="stylesheet" href="../core/cookies_wrapper/style_cookies_wrapper.css">
+    <link rel="stylesheet" href="../core/discount_newsletter/style_discount_newsletter.css">
     <title>Account</title>
 </head>
 
@@ -19,7 +22,7 @@
     <nav>
         <div class="navigation-bar">
             <label class="logo"><a href="../index.html">MealVity</a></label>
-            <ul class="navigation-links">
+            <ul class="navigation-links mb-0">
                 <li>
                     <a href="../index.html">
                         <div>Home</div>
@@ -47,56 +50,59 @@
         </div>
     </nav>
 
-    <div class="account-selection">
-        <div class="button-email">Sign in</div>
-        <div class="button-new-account">Create a new account</div>
-    </div>
-
-    <div class="account-container">
-        <div class="sign-in-container">
-            <div class="button-google">
-                <img src="images/google_icon.png" alt="Google Icon">
-                <p>Sign in with Google</p>
-            </div>
-            <div class="or-line-break">
-                <div class="line-break"></div>
-                <span id="or-text">or</span>
-                <div class="line-break"></div>
-            </div>
-            <form class="sign-in-form" id="sign-in-form" method="POST">
-                <input type="email" required name="login-email" id="login-email" placeholder="Enter your email address">
-                <input type="password" required name="login-password" id="login-password"
-                    placeholder="Enter your password">
-                <input type="submit" class="sign-in-button" value="Sign in">
-            </form>
-            <div class="reset-password-container">
-                <p id="reset-password-text">Forgot your password?</p>
-                <a href="#" id="reset-password-link">Reset</a>
-            </div>
+    <div class="main">
+        <div class="account-selection">
+            <div class="button-email var-font-type">Sign in</div>
+            <div class="button-new-account var-font-type">Create a new account</div>
         </div>
-        <div class="new-account-form">
-            <form class="row" id="new-account-form" method="POST">
-                <div class="col-12">
-                    <input type="text" required name="full-name" id="full-name" placeholder="Enter your full name">
+
+        <div class="account-container">
+            <div class="sign-in-container">
+                <div class="button-google">
+                    <img src="images/google_icon.png" alt="Google Icon">
+                    <p class="var-font-type-paragraph">Sign in with Google</p>
                 </div>
-                <div class="col-12">
-                    <input type="tel" required name="phone-number" id="phone-number"
-                        placeholder="Enter your phone number" maxlength="9" pattern="^\d{9}$">
+                <div class="or-line-break">
+                    <div class="line-break"></div>
+                    <span id="or-text var-font-type-paragraph">or</span>
+                    <div class="line-break"></div>
                 </div>
-                <div class="col-12">
-                    <input type="email" required name="email" id="email" placeholder="Enter your email address">
+                <form class="sign-in-form" id="sign-in-form" method="POST">
+                    <input type="email" required name="login-email" id="login-email"
+                        placeholder="Enter your email address">
+                    <input type="password" required name="login-password" id="login-password"
+                        placeholder="Enter your password">
+                    <input type="submit" class="sign-in-button" value="Sign in">
+                </form>
+                <div class="reset-password-container">
+                    <p id="reset-password-text" class="var-font-type-paragraph">Forgot your password?</p>
+                    <a href="#" id="reset-password-link" class="var-font-type-paragraph">Reset</a>
                 </div>
-                <div class="col-12">
-                    <input type="password" required name="password" id="password" placeholder="Enter your password">
-                </div>
-                <div class="col-12">
-                    <input type="password" required name="repeat-password" id="repeat-password"
-                        placeholder="Repeat your password">
-                </div>
-                <div class="col-12">
-                    <input type="submit" class="sign-up-button" value="Sign up now" />
-                </div>
-            </form>
+            </div>
+            <div class="new-account-form">
+                <form class="row" id="new-account-form" method="POST">
+                    <div class="col-12">
+                        <input type="text" required name="full-name" id="full-name" placeholder="Enter your full name">
+                    </div>
+                    <div class="col-12">
+                        <input type="tel" required name="phone-number" id="phone-number"
+                            placeholder="Enter your phone number" maxlength="9" pattern="^\d{9}$">
+                    </div>
+                    <div class="col-12">
+                        <input type="email" required name="email" id="email" placeholder="Enter your email address">
+                    </div>
+                    <div class="col-12">
+                        <input type="password" required name="password" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="col-12">
+                        <input type="password" required name="repeat-password" id="repeat-password"
+                            placeholder="Repeat your password">
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" class="sign-up-button" value="Sign up now" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -108,6 +114,9 @@
     <script src="../dark_mode.js"></script>
     <script src="script_account.js"></script>
     <script src="../core/navigation_bar/script_navigation_bar.js"></script>
+    <script src="../core/settings_modal/script_settings_modal.js"></script>
+    <script src="../core/cookies_wrapper/script_cookies_wrapper.js"></script>
+    <script src="../core/discount_newsletter/script_discount_newsletter.js"></script>
 </body>
 
 </html>

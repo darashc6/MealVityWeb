@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" type="text/css" href="home/style_home.css">
     <link rel="stylesheet" type="text/css" href="core/navigation_bar/style_navigation_bar.css">
+    <link rel="stylesheet" href="core/settings_modal/style_settings_modal.css">
+    <link rel="stylesheet" href="core/cookies_wrapper/style_cookies_wrapper.css">
+    <link rel="stylesheet" href="core/discount_newsletter/style_discount_newsletter.css">
     <title>Home</title>
 </head>
 
@@ -183,88 +186,6 @@
         </div>
     </div>
 
-    <!-- Cookie Wrapper -->
-    <div class="cookie-wrapper-container">
-        <div class="cookie-wrapper">
-            <p class="cookie-text">
-                We use cookies in this website to give you the best experience on our site and show you relevant ads. To
-                find out more, read our <a href="./privacy_policy/privacy_policy.html" target="_blank"><span
-                        class="policy-link" id="privacy-policy-link">privacy
-                        policy</span></a> and <a href="./cookie_policy/cookie_policy.html" target="_blank"><span
-                        class="policy-link" id="cookie-policy-link">cookie
-                        policy</span></a>.
-            </p>
-
-            <button class="cookie-btn">
-                Okay
-            </button>
-        </div>
-    </div>
-
-    <!-- Discount form -->
-    <div class="discount-form-container">
-        <div class="discount-form">
-            <div class="row">
-                <div class="col-md-4 col-12">
-                    <img src="./assets/discount_newsletter_image.jpg" alt="discount-newsletter-img" srcset="">
-                </div>
-                <div class="col-md-8 col-12 text-center row d-flex flex-column align-items-center justify-content-evenly"
-                    id="subscription-form">
-                    <div class="col-12">
-                        <h4>GET 10% OFF</h4>
-                        <p>Subscribe and get a promotion for your first order.</p>
-                    </div>
-                    <form action="#" class="col-10">
-                        <div class="input-group">
-                            <input class="form-control" id="discount-form-input-email" type="email" name="email"
-                                placeholder="Your email">
-                        </div>
-                        <div class="input-group">
-                            <input type="submit" value="Subscribe" class="form-control subscribe-btn">
-                        </div>
-                    </form>
-                    <span id="discount-form-close-btn" class="close-btn">No thanks, I don't like gifts</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Settings modal-->
-    <div class="settings-modal-container">
-        <div class="settings-modal">
-            <div class="header d-flex align-items-center justify-content-between">
-                <h4 class="header-text">Settings</h4>
-                <span class="iconify" data-icon="mdi:window-close" id="close-settings-modal"></span>
-            </div>
-
-            <div class="content">
-                <div class="modal-font-size-option-container">
-                    <p>Font type:</p>
-                    <input type="number" id="input-font-size" min="1" max="6" maxlength="1" class="form-control">
-                </div>
-                <div class="modal-background-color-option-container">
-                    <p>Background color:</p>
-                    <div>
-                        <p style="margin: auto 0;">#</p>
-                        <input type="text" id="input-background-color" maxlength="6" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-mode-option-container">
-                    <p>Mode:</p>
-                    <div>
-                        <select name="input-mode" id="input-mode">
-                            <option value="normal">Normal</option>
-                            <option value="dark">Dark</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-btns">
-                    <button type="button" id="settings-modal-btn-reset" class="btn btn-danger">Reset</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer class="footer">
         <a href="./privacy_policy/privacy_policy.html" target="_blank">Privacy Policy</a> | Mealvity Web &copy; <span
             id="current-year"></span> | <a target="_blank" href="./cookie_policy/cookie_policy.html">Cookie Policy</a>
@@ -278,6 +199,9 @@
     <script src="dark_mode.js"></script>
     <script src="home/script_home.js"></script>
     <script src="core/navigation_bar/script_navigation_bar.js"></script>
+    <script src="core/settings_modal/script_settings_modal.js"></script>
+    <script src="core/cookies_wrapper/script_cookies_wrapper.js"></script>
+    <script src="core/discount_newsletter/script_discount_newsletter.js"></script>
 </body>
 
 </html>

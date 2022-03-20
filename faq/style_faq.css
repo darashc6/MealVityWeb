@@ -11,7 +11,7 @@
 
 .accordion-item-header {
     font-family: 'Hind', sans-serif;
-    font-size: 25px;
+    font-size: var(--font-type-1);
     font-weight: bold;
     padding: 15px 15px 10px 15px;
     cursor: pointer;
@@ -32,9 +32,8 @@
 
 .accordion-item-content {
     font-family: 'Hind', sans-serif;
-    font-size: 20px;
+    font-size: var(--font-type-paragraph-1);
     padding: 0 15px;
-    line-height: 1.8rem;
     max-height: 0;
     overflow: hidden;
     transition: 0.5s;

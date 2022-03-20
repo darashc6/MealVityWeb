@@ -1,0 +1,70 @@
+/** Settings modal **/
+.settings-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  z-index: 99;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-modal {
+  width: 300px;
+  background-color: var(--color-accent);
+  padding: 10px;
+}
+
+.header-text {
+  color: var(--black);
+}
+
+.modal-font-size-option-container,
+.modal-background-color-option-container,
+.modal-mode-option-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.modal-background-color-option-container > div {
+  display: flex;
+}
+
+.modal-background-color-option-container p,
+.modal-font-size-option-container p,
+.modal-mode-option-container p {
+  padding-right: 5px;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: var(--black);
+}
+
+#input-font-size,
+#input-background-color {
+  width: 80px;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 25px;
+  padding: 1rem 0;
+}
+
+.modal-btns button {
+  margin: 0 5px;
+}
+
+.input-field {
+  padding: 5px 0;
+}
+/** End Settings Modal **/
