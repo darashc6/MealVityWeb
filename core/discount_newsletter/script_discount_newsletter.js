@@ -10,7 +10,7 @@ $(document).ready(function () {
         <div class="discount-form">
             <div class="row">
                 <div class="col-md-4 col-12">
-                    <img src="../assets/discount_newsletter_image.jpg" alt="discount-newsletter-img" srcset="">
+                    <img src="../assets/discount_newsletter_image_webp.webp" alt="discount-newsletter-img" srcset="">
                 </div>
                 <div class="col-md-8 col-12 text-center row d-flex flex-column align-items-center justify-content-evenly"
                     id="subscription-form">

@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Dosis";
+  font-weight: 300;
+  src: url("./fonts/Dosis-Light.ttf");
+}
+
+@font-face {
+  font-family: "Dosis";
+  font-weight: 400;
+  src: url("./fonts/Dosis-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Dosis";
+  font-weight: 700;
+  src: url("./fonts/Dosis-SemiBold.ttf");
+}
+
 :root {
   --color-primary: var(--normal-mode-color-primary);
   --color-accent: var(--normal-mode-color-accent);
@@ -21,19 +39,19 @@
   --dark-mode-color-accent-dark: #b19023;
   --dark-mode-text-primary: #8ad3e7;
 
-  --font-type-1: 2em;
-  --font-type-2: 2.4em;
-  --font-type-3: 2.8em;
-  --font-type-4: 3.2em;
-  --font-type-5: 3.6em;
-  --font-type-6: 4em;
+  --font-type-1: 1.8em;
+  --font-type-2: 2.2em;
+  --font-type-3: 2.6em;
+  --font-type-4: 3em;
+  --font-type-5: 3.4em;
+  --font-type-6: 3.8em;
 
-  --font-type-paragraph-1: 1em;
-  --font-type-paragraph-2: 1.2em;
-  --font-type-paragraph-3: 1.4em;
-  --font-type-paragraph-4: 1.6em;
-  --font-type-paragraph-5: 1.8em;
-  --font-type-paragraph-6: 2em;
+  --font-type-paragraph-1: 1.1em;
+  --font-type-paragraph-2: 1.3em;
+  --font-type-paragraph-3: 1.5em;
+  --font-type-paragraph-4: 1.7em;
+  --font-type-paragraph-5: 1.9em;
+  --font-type-paragraph-6: 2.1em;
 }
 
 * {
@@ -41,6 +59,7 @@
 }
 
 body {
+  font-family: "Dosis" !important;
   background-color: var(--color-primary);
   overflow-x: hidden;
 }
